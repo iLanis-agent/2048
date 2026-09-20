@@ -90,7 +90,10 @@ function paint(popIdx){
 }
 function doMove(dir){
   var m=move(grid,dir);
-  if(!m.moved) return;
+  if(!m.moved){
+    if(!canMove(grid)) showOverlay('No moves left','final score '+score, true);
+    return;
+  }
   var eBefore={}; empties(grid).forEach(function(i){eBefore[i]=1;});
   grid=m.grid;
   score+=m.gained;
